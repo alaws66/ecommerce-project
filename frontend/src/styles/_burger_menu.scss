@@ -1,0 +1,48 @@
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 2em;
+  left: 2em;
+  top: 1.5em;
+}
+
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: $dark;
+}
+
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: $accent-color;
+}
+
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  background: $green;
+  padding: 2.5em 1.5em 0;
+  font-size: 2em;
+}
+
+/* Individual item */
+.bm-item {
+  width: fit-content;
+  float: right;
+  color: $light;
+  margin-bottom: 0.5em;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.bm-item:hover {
+  color: $blue-dark;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}

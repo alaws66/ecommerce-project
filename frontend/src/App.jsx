@@ -7,12 +7,14 @@ import Clothing from './pages/Clothing';
 import Accessories from './pages/Accessories';
 import Account from './pages/Account';
 import Cart from './pages/Cart';
+import BurgerMenu from './components/BurgerMenu';
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar />
+        <BurgerMenu pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
         <div className="pages">
           <Routes>
             <Route path="/" element={<Home />} />
