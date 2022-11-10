@@ -1,7 +1,28 @@
 const Home = () => {
   return ( 
     <div className="homepage">
-      <h2>Homepage</h2>
+      <div className="main-promotion">
+        <div className="message">
+          <div className="promo-number">
+            <h1>80</h1>
+            <h1>%</h1>
+          </div>
+          <div className="text">
+            <h1>of all our products are made from recycled materials</h1>
+          </div>
+        </div>
+      </div>
+      
+      <div className="divider"></div>
+
+      <div className="homepage-content">
+        <div className="display-product">
+          <h1>Clothing</h1>
+        </div>
+        <div className="display-product">
+          <h1>Accessories</h1>
+        </div>
+      </div>
     </div>
    );
 }
