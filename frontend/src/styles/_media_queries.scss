@@ -1,0 +1,119 @@
+@media (min-width: 1200px) {
+  .bm-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .left-links a,
+  .search {
+    display: none;
+  }
+
+  .message {
+    width: 36em;
+  }
+
+  .promo-number {
+    h1 {
+      font-size: 4em;
+
+      &:first-child {
+        font-size: 10em;
+      }
+    }
+  }
+
+  .text {
+    h1 {
+      font-size: 2em;
+    }
+  }
+
+  .display-product {
+    width: 22em;
+    height: 20em;
+  }
+}
+
+@media (max-width: 950px) {
+  .homepage-content {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 700px) {
+  .message {
+    width: 28em;
+  }
+
+  .promo-number {
+    h1 {
+      font-size: 2em;
+
+      &:first-child {
+        font-size: 6em;
+      }
+    }
+  }
+
+  .text {
+    h1 {
+      font-size: 1.5em;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar {
+    height: 3em;
+  }
+
+  .bm-burger-button {
+    width: 1.5em;
+    height: 1.5em;
+    top: 1.8em;
+  }
+
+  .logo {
+    h1 {
+      font-size: 2em;
+    }
+  }
+
+  .icon-links {
+    .user-icon,
+    .cart-icon {
+      font-size: 1.5em;
+    }
+  }
+
+  .message {
+    width: 18em;
+  }
+
+  .promo-number {
+    h1 {
+      font-size: 1.5em;
+
+      &:first-child {
+        font-size: 4em;
+      }
+    }
+  }
+
+  .text {
+    h1 {
+      font-size: 1em;
+    }
+  }
+
+  .display-product {
+    width: 15em;
+    height: 15em;
+
+    h1 {
+      font-size: 1.5em;
+    }
+  }
+}
