@@ -4,6 +4,7 @@ const Basket = () => {
   const products = [
     {
       id: 1,
+      img: '../../public/product-placeholder.png',
       title: 'Crew neck jumper',
       size: 16,
       colour: 'Cream',
@@ -12,6 +13,7 @@ const Basket = () => {
     },
     {
       id: 2,
+      img: '../../public/product-images/straight-denim-lightWash-front.jpg',
       title: 'Straight leg demin jean',
       size: 'W30L32',
       colour: 'Light Wash',
@@ -20,6 +22,7 @@ const Basket = () => {
     },
     {
       id: 3,
+      img: '../../public/product-placeholder.png',
       title: 'Cat-eye sunglasses',
       size: 'One size',
       colour: 'Pink',
@@ -29,6 +32,7 @@ const Basket = () => {
     },
     {
       id: 4,
+      img: '../../public/product-placeholder.png',
       title: 'Hoop earrings',
       size: 'One size',
       colour: 'Gold',
@@ -40,9 +44,10 @@ const Basket = () => {
   return ( 
     <div className='cart-contents'>
       <h1>Basket</h1>
-      {products.map(({ id, title, size, colour, price, quanity }) => (
+      {products.map(({ id, img, title, size, colour, price, quanity }) => (
         <BasketProduct 
           key={id}
+          img={img}
           title={title}
           size={size}
           colour={colour}

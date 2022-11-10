@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-const BasketProduct = ({ title, size, colour, price, quanity }) => {
+const BasketProduct = ({ img, title, size, colour, price, quanity }) => {
   return ( 
     <div className="basket-product">
       <div className="product-image">
-        <img src='../../public/product-placeholder.png'></img>
+        <img src={img}></img>
       </div>
       <div className="product-info">
         <p>{title}</p>
