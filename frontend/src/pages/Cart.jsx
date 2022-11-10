@@ -1,6 +1,10 @@
+import Basket from "../components/BasketDrawer";
+
 const Cart = () => {
   return ( 
-    <div className="cart"></div>
+    <div className="cart">
+      <Basket />
+    </div>
    );
 }
  
