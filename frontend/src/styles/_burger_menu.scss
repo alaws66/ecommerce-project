@@ -4,16 +4,12 @@
   width: 2em;
   left: 2em;
   top: 1.5em;
-}
+  color: $dark;
+  transition: color 0.2s;
 
-/* Color/shape of burger icon bars */
-.bm-burger-bars {
-  background: $dark;
-}
-
-/* Color/shape of burger icon bars on hover*/
-.bm-burger-bars-hover {
-  background: $accent-color;
+  &:hover {
+    color: $green;
+  }
 }
 
 .bm-menu-wrap {
@@ -23,15 +19,15 @@
 
 /* General sidebar styles */
 .bm-menu {
+  width: 30em;
   background: $green;
   padding: 2.5em 1.5em 0;
-  font-size: 2em;
 }
 
 /* Individual item */
 .bm-item {
   width: fit-content;
-  float: right;
+  font-size: 2.5em;
   color: $light;
   margin-bottom: 0.5em;
   text-decoration: none;
@@ -40,6 +36,37 @@
 
 .bm-item:hover {
   color: $blue-dark;
+}
+
+/* Search bar */
+.burger-search {
+  margin-bottom: 2em;
+  padding: 0.5em;
+  height: fit-content;
+  font-size: 1.2em;
+  background-color: #E7EEF0;
+  border-radius: 5px;
+
+  input {
+    font-size: 1.5em;
+    background-color: transparent;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &-icon {
+    font-size: 1.5em;
+    color: $accent-color;
+  }
+}
+
+.bm-item-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 /* Styling of overlay */

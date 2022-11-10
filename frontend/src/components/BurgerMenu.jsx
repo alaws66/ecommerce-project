@@ -1,21 +1,26 @@
 import React from 'react';
 import { slide as Menu } from 'react-burger-menu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const BurgerMenu = () => {
   return ( 
     <Menu customCrossIcon={false} customBurgerIcon={<FontAwesomeIcon icon={faBars} />}>
-      <a className="menu-item" href="/">
+      <div className='burger-search'>
+        <input type='text' id="search" name="search" autoComplete="off" placeholder="Search..."></input>
+        <FontAwesomeIcon icon={faMagnifyingGlass} className="burger-search-icon" />
+      </div>
+
+      <a href="/">
         Home
       </a>
-      <a className="menu-item" href="/clothing">
+      <a href="/clothing">
         Clothing
       </a>
-      <a className="menu-item" href="/accessories">
+      <a href="/accessories">
         Accessories
       </a>
-      <a className="menu-item" href="/account">
+      <a href="/account">
         Your Account
       </a>
     </Menu>

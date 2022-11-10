@@ -4,7 +4,16 @@ body {
   background-color: $brown;
 }
 
-h1 {
+button {
+  font-family: 'Archivo', sans-serif;
+}
+
+.pages {
+  padding-top: 5.5em;
+}
+
+h1,
+p {
   margin: 0;
 }
 
