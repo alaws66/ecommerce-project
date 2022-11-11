@@ -59,6 +59,22 @@
 }
 
 @media (max-width: 700px) {
+  .bm-menu {
+    width: 20em
+  }
+
+  .bm-item {
+    font-size: 2em;
+  }
+
+  .burger-search {
+    font-size: 0.8em;
+
+    input {
+      font-size: 1.3em;
+    }
+  }
+
   .message {
     width: 28em;
   }
@@ -114,6 +130,22 @@
     width: 1.5em;
     height: 1.5em;
     top: 1.8em;
+  }
+
+  .bm-menu {
+    width: 15em
+  }
+
+  .bm-item {
+    font-size: 1.5em;
+  }
+
+  .burger-search {
+    font-size: 0.6em;
+
+    input {
+      font-size: 1.2em;
+    }
   }
 
   .logo {
@@ -182,12 +214,33 @@
 }
 
 @media (max-width: 350px) {
+  .bm-menu {
+    width: 12em
+  }
+
+  .bm-item {
+    font-size: 1.2em;
+  }
+
+  .burger-search {
+    font-size: 0.5em;
+
+    input {
+      font-size: 1.1em;
+    }
+  }
+
   .icon-links {
     a {
       &:first-child {
         display: none;
       }
     }
+  }
+
+  .display-product {
+    width: 10em;
+    height: 12em;
   }
 
   .product-image {
