@@ -72,13 +72,4 @@
   padding: 0.8em 5em;
   font-size: 2em;
   text-transform: uppercase;
-  color: $light;
-  background-color: $accent-color;
-  border: none;
-  border-radius: 10px;
-  transition: filter 0.5s;
-
-  &:hover {
-    filter: brightness(115%);
-  }
 }

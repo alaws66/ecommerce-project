@@ -1,0 +1,50 @@
+.display-page-title {
+  background-color: $blue-light;
+  height: 15em;
+
+  h1 {
+    padding: 0.4em 0.8em;
+    text-align: end;
+    font-size: 8em;
+    font-weight: 600;
+    color: $green;
+  }
+}
+
+.product-nav-btns {
+  display: flex;
+  align-items: center;
+  padding: 3em 2em;
+
+  button {
+    margin: 0 1em;
+    padding: 0.5em 1.5em;
+    font-size: 1.5em;
+  }
+}
+
+.products {
+  display: flex;
+  justify-content: space-evenly;
+  margin: 0 5em;
+}
+
+.product {
+  p {
+    font-size: 2em;
+    color: $light;
+  }
+}
+
+.product-img {
+  padding-bottom: 1em;
+
+  img {
+    width: 30em;
+    transition: width 0.3s;
+
+    &:hover {
+      width: 32em;
+    }
+  }
+}
