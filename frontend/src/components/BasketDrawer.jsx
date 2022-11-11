@@ -4,10 +4,10 @@ const Basket = () => {
   const products = [
     {
       id: 1,
-      img: '../../public/product-placeholder.png',
+      img: '../../public/product-images/hoodie-grey-front.jpg',
       title: 'Crew neck jumper',
       size: 16,
-      colour: 'Cream',
+      colour: 'Grey',
       price: 16.99,
       quanity: 1
     },
@@ -22,7 +22,7 @@ const Basket = () => {
     },
     {
       id: 3,
-      img: '../../public/product-placeholder.png',
+      img: '../../public/product-images/cat-sunglasses-pink.jpg',
       title: 'Cat-eye sunglasses',
       size: 'One size',
       colour: 'Pink',
@@ -32,7 +32,7 @@ const Basket = () => {
     },
     {
       id: 4,
-      img: '../../public/product-placeholder.png',
+      img: '../../public/product-images/hoop-earring-gold.jpg',
       title: 'Hoop earrings',
       size: 'One size',
       colour: 'Gold',
@@ -44,7 +44,7 @@ const Basket = () => {
   return ( 
     <div className='cart-contents'>
       <h1>Basket</h1>
-      {products.map(({ id, img, title, size, colour, price, quanity }) => (
+      {products.map(({ id, img, title, size, colour, price, quanity, discount }) => (
         <BasketProduct 
           key={id}
           img={img}
@@ -53,6 +53,7 @@ const Basket = () => {
           colour={colour}
           price={price}
           quanity={quanity}
+          discount={discount}
         />
       ))}
       <div className="confirm-purchase">

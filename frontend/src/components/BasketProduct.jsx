@@ -1,7 +1,20 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons';
 
-const BasketProduct = ({ img, title, size, colour, price, quanity }) => {
+const BasketProduct = ({ img, title, size, colour, price, discount, quanity }) => {
+
+  function addDiscount() {
+    if (discount) {
+      return (
+        <p className='discount'>-£{discount}</p>
+      );
+    }
+  }
+
+  if (!img) {
+    img = '../../public/product-placeholder.png'
+  }
+
   return ( 
     <div className="basket-product">
       <div className="product-image">
@@ -17,6 +30,7 @@ const BasketProduct = ({ img, title, size, colour, price, quanity }) => {
           <p>{quanity}</p>
           <button><FontAwesomeIcon icon={faMinus} /></button>
         </div>
+        {addDiscount()}
       </div>
     </div>
    );
