@@ -1,0 +1,48 @@
+.product-page {
+  padding: 5em;
+}
+
+.add-btn {
+  margin: 1.5em 0;
+  padding: 0.6em 0.8em;
+  font-size: 3em;
+  font-weight: 900;
+  color: $green;
+  background-color: $blue-dark;
+}
+
+.product-details {
+  display: flex;
+  color: $light;
+
+  h1 {
+    padding: 0.2em 0;
+    font-size: 3em;
+  }
+
+  p {
+    font-size: 2em;
+  }
+
+  label {
+    font-size: 1.2em;
+    font-weight: 900;
+  }
+}
+
+.preview-images {
+  padding-right: 3em;
+  img {
+    padding-bottom: 0.8em;
+    width: 35em
+  }
+}
+
+.product-options {
+  padding: 1em 0;
+  button {
+    margin: 0.5em;
+    padding: 0.2em 0.5em;
+    font-size: 1.2em;
+  }
+}
