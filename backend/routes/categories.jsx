@@ -14,6 +14,7 @@ router.get('/:cat', async (req, res) => {
           title: "$title",
           colour: "$stock.colour"
         },
+        category: { $first: "$category" },
         max_stock: { $max: "$stock.quantity" },
         max_price: { $max: "$stock.price" },
         discount: { $max: "$stock.discount" }
@@ -26,7 +27,7 @@ router.get('/:cat', async (req, res) => {
         }
       } 
     },
-    { $project: { _id: 0, product_id: "$_id.product_id", title: '$_id.title', colour: '$_id.colour', max_stock: 1, max_price: 1, discount: 1, min_price: 1 } }
+    { $project: { _id: "$_id.product_id", title: '$_id.title', colour: '$_id.colour', category: 1, max_stock: 1, max_price: 1, discount: 1, min_price: 1 } }
   ]);
 
   res.status(200).json(products);
