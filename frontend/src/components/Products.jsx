@@ -12,11 +12,11 @@ const Products = ({products}) => {
         </div>
         
         <div className="products">
-          {products.map(({ _id, title, colour, min_price, max_price, discount }, index) => (
+          {products.map(({ _id, title, colour, min_price, max_price, discount, image }, index) => (
             <div className="product" key={ index }>
               <Link to={`/products/${ _id }`}>
                 <div className="product-img">
-                  <img src="../../public/product-placeholder.png" alt={ title }></img>
+                  <img src={image} alt={ title }></img>
                   {discount && ( 
                     <div className="sale">
                     <p>Sale</p>
