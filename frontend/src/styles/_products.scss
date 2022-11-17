@@ -1,6 +1,6 @@
 .display-page-title {
   background-color: $blue-light;
-  height: 15em;
+  height: fit-content;
 
   h1 {
     padding: 0.4em 0.8em;
@@ -25,11 +25,14 @@
 
 .products {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-evenly;
   margin: 0 5em;
 }
 
 .product {
+  padding: 0 1em 2em;
+
   p {
     font-size: 2em;
     color: $light;
@@ -37,6 +40,7 @@
 }
 
 .product-img {
+  position: relative;
   padding-bottom: 1em;
 
   img {
@@ -46,5 +50,18 @@
     &:hover {
       width: 32em;
     }
+  }
+}
+
+.sale {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background-color: $light;
+
+  p {
+    padding: 0.2em 0.5em;
+    font-weight: 900;
+    color: $accent-color;
   }
 }
