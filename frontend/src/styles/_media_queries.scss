@@ -1,12 +1,38 @@
+@media (max-width: 2000px) {
+  .product-page {
+    padding: 5em 15em;
+  }
+}
+
 @media (max-width: 1800px) {
   .cart-contents {
     padding: 2em 20em;
+  }
+
+  .product-details {
+    flex-direction: column;
+  }
+
+  .preview-images {
+    align-self: center;
+    padding-right: 0;
+    padding-bottom: 3em;
+  }
+
+  .full-product-info {
+    button {
+      float: right;
+    }
   }
 }
 
 @media (max-width: 1350px) {
   .cart-contents {
     padding: 2em 8em;
+  }
+
+  .product-page {
+    padding: 5em 10em;
   }
 }
 
@@ -72,6 +98,30 @@
       font-size: 1.5em;
     }
   }
+
+  .add-btn,
+  .product-details h1 {
+    font-size: 2em;
+  }
+
+  .product-details {
+    p,
+    label {
+      font-size: 1.5em;
+    }
+  }
+
+  .product-options {
+    button {
+      font-size: 1.2em;
+    }
+  }
+
+  .preview-images {
+    img {
+      width: 25em;
+    }
+  }
 }
 
 @media (max-width: 950px) {
@@ -81,6 +131,40 @@
 
   .cart-contents {
     padding: 2em 2em;
+  }
+}
+
+@media (max-width: 850px) {
+  .add-btn {
+    margin: 0.5em 0;
+    font-size: 1.2em;
+  }
+
+  .product-details {
+    h1 {
+      font-size: 1.5em;
+    }
+
+    p,
+    label {
+      font-size: 1em;
+    }
+  }
+
+  .product-options {
+    padding-bottom: 0;
+
+    button {
+      font-size: 0.8em;
+    }
+  }
+
+  .preview-images {
+    padding-bottom: 1em;
+
+    img {
+      width: 20em;
+    }
   }
 }
 
@@ -164,6 +248,10 @@
     p {
       font-size: 1.2em;
     }
+  }
+
+  .product-page {
+    padding: 3em 6em;
   }
 }
 
@@ -289,6 +377,40 @@
       font-size: 1em;
     }
   }
+
+  .product-page {
+    padding: 3em 4em;
+  }
+
+  .preview-images {
+    img {
+      width: 12em;
+    }
+  }
+
+  .add-btn {
+    margin: 0.8em 0;
+    font-size: 1em;
+  }
+
+  .product-details {
+    h1 {
+      font-size: 1.2em;
+    }
+
+    p,
+    label {
+      font-size: 0.8em;
+    }
+  }
+
+  .product-options {
+    padding-bottom: 0;
+
+    button {
+      font-size: 0.6em;
+    }
+  }
 }
 
 @media (max-width: 350px) {
@@ -329,5 +451,9 @@
 
   .product-info {
     font-size: 0.6em;
+  }
+
+  .product-page {
+    padding: 2em 2em;
   }
 }
