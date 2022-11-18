@@ -2,7 +2,7 @@ import Products from "../components/Products";
 import useFetch from "../components/useFetch";
 
 const Accessories = () => {
-  const {data: products, isPending, error} = useFetch('/category/accessories');
+  const {data: products, isPending, error} = useFetch('http://localhost:5000/category/accessories');
 
   return ( 
     <div className="accessories">
