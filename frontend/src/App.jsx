@@ -8,7 +8,7 @@ import Accessories from './pages/Accessories';
 import Account from './pages/Account';
 import Cart from './pages/Cart';
 import BurgerMenu from './components/BurgerMenu';
-import ProductDetails from './components/ProductDetails';
+import Product from './pages/Product';
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/clothing" element={<Clothing />} />
             <Route path="/accessories" element={<Accessories />} />
-            <Route path="/products/:id/*" element={<ProductDetails />} />
+            <Route path="/products/:id/*" element={<Product />} />
             <Route path="/account" element={<Account />} />
             <Route path="/cart" element={<Cart />} />
           </Routes>
