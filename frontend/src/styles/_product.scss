@@ -3,7 +3,7 @@
 }
 
 .add-btn {
-  margin: 1.5em 0;
+  margin: 0.8em 0;
   padding: 0.6em 0.8em;
   font-size: 2.5em;
   font-weight: 900;
@@ -49,6 +49,20 @@
     padding: 0.2em 0.5em;
     font-size: 1.8em;
   }
+}
+
+.product-prices {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 1.5em;
+}
+
+#productDiscount {
+  color: $accent-color;
+}
+
+#stockWarning {
+  text-align: right;
 }
 
 .active-btn {
