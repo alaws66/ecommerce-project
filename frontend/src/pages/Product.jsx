@@ -3,8 +3,9 @@ import useFetch from "../components/useFetch";
 import { useParams } from "react-router-dom";
 
 const Product = () => {
-  const { id } = useParams();
-  const {data: products, isPending, error} = useFetch(`http://localhost:5000/products/${id}`);
+  const { id, colour } = useParams();
+
+  const {data: products, isPending, error} = useFetch(`http://localhost:5000/products/${id}/${colour}`);
 
   return ( 
     <div className="product-page">

@@ -1,3 +1,6 @@
+import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+
 const ProductDetails = ({products}) => {
   //***** variables *****/ 
   let sizeArr = [];
@@ -5,7 +8,21 @@ const ProductDetails = ({products}) => {
 
   let currentSize = null;
   let currentColour = null;
-  let currentStockItem = null;
+  // let currentStockItem = null; 
+  let [currentPrice, setPrice] = useState(null);
+  let [currentDiscount, setDiscount] = useState(null);
+  let [currentQuantity, setQuantity] = useState(null);
+
+  const { colour } = useParams();
+  if (colour) {
+    currentColour = colour;
+  }
+
+  useEffect(() => {
+    //***** update the document title using the browser API *****//
+    changeSize(currentSize);
+    changeColour(currentColour);
+  }, []);
 
   //***** pushes one of every colour and size in seperate arrays  *****/ 
   products.stock.map((stock) => {
@@ -18,83 +35,87 @@ const ProductDetails = ({products}) => {
     }
   });
 
-  //***** function to show correct price + discount from user selection *****/
   function getStockEntry(size, colour) {
-    currentStockItem = `${size}, ${colour}`;
+    let selectedStockItem = null;
 
-    //***** get price and discount html tags *****/
-    const productPrice = document.getElementById('productPrice');
-    const productDiscount = document.getElementById('productDiscount');
-    const lowStock = document.getElementById('stockWarning');
-
-    //***** map through stock array *****/
-    products.stock.map((stock) => {
-      if (stock.size === size && stock.colour === colour && stock.discount) {
-        productPrice.textContent = `£${stock.price.toFixed(2)}`;
-
-        //***** calculate and show discount *****/
-        let discountPrice = (stock.discount / 100) * stock.price;
-        productDiscount.textContent = `-£${discountPrice.toFixed(2)}`;
-
-        //***** if discount doesn't exist show only price *****/
-      } else if (stock.size === size && stock.colour === colour) {
-        productPrice.textContent = `£${stock.price.toFixed(2)}`;
-        productDiscount.textContent = '';
+    //***** find the selected entry of the first matching colour if the size is null *****//
+    for (const stock of products.stock) {
+      if (!size && stock.colour === colour) {
+        currentSize = stock.size;
+        selectedStockItem = stock;
+        break;
       }
-
-      if (stock.size == size && stock.colour === colour && stock.quantity <= 5) {
-        lowStock.textContent = `Only ${stock.quantity} items left!`;
-      } else if (stock.size == size && stock.colour === colour && stock.quantity > 5) {
-        lowStock.textContent = '';
+      if (stock.size === size && stock.colour === colour) {
+        selectedStockItem = stock;
+        break;
       }
-    })
+    }
+
+    //***** work out the price, discount and quantity *****//
+    if (selectedStockItem.discount) {
+      setPrice(selectedStockItem.price);
+      setDiscount((selectedStockItem.discount / 100) * selectedStockItem.price);
+    } else {
+      setPrice(selectedStockItem.price);
+      setDiscount(null);
+    }
+
+    if(selectedStockItem.quantity <= 5) {
+      setQuantity(selectedStockItem.quantity);
+    } else {
+      setQuantity(null);
+    }
   }
 
   //***** function to select size of product from stock *****/
-  function changeSize(size) {
-    currentSize = size;
+  function changeSize(clickedSize) {
+    currentSize = clickedSize;
 
     getStockEntry(currentSize, currentColour);
 
     products.stock.map((stock) => {
-      if (stock.size === size) {
-        document.getElementById(size).classList.add('active-btn');
-      } else if (stock.size !== size) {
+      if (stock.size === clickedSize) {
+        document.getElementById(clickedSize).classList.add('active-btn');
+      } else if (stock.size !== clickedSize) {
         document.getElementById(stock.size).classList.remove('active-btn');
       }
 
-      if (stock.size === size && stock.quantity === 0) {
+      if (stock.size === clickedSize && stock.quantity === 0) {
         document.getElementById(stock.colour).classList.add('out-stock');
-      } else if (stock.size === size && stock.quantity !== 0) {
+      } else if (stock.size === clickedSize && stock.quantity !== 0) {
         document.getElementById(stock.colour).classList.remove('out-stock');
       }
     })
   }
 
   //***** function to select colour of product from stock *****/
-  function changeColour(colour) {
-    currentColour = colour;
-
+  function changeColour(clickedColour) {
+    currentColour = clickedColour;
     getStockEntry(currentSize, currentColour);
+
+    //***** changes url to match selected colour *****/
+    // if (clickedColour !== colour) {
+    //   window.location.assign(`/products/${products._id}/${clickedColour}`);
+    // }
 
     //***** adds images based on selected colour *****/
     products.image_collection.map((collect) => {
-      if (collect.colour === colour) {
+      if (collect.colour === clickedColour) {
         document.getElementById('product-img-1').src = collect.images[0];
-        document.getElementById(colour).classList.add('active-btn');
-      } else if (collect.colour !== colour) {
+        document.getElementById(clickedColour).classList.add('active-btn');
+      } else if (collect.colour !== clickedColour) {
         document.getElementById(collect.colour).classList.remove('active-btn');
       }
 
-      if (collect.colour === colour && collect.images[1]) {
+      if (collect.colour === clickedColour && collect.images[1]) {
         document.getElementById('product-img-2').src = collect.images[1];
       } 
     })
 
     products.stock.map((stock) => {
-      if (stock.colour === colour && stock.quantity === 0) {
+      if (stock.colour === clickedColour && stock.quantity === 0) {
         document.getElementById(stock.size).classList.add('out-stock');
-      } else if (stock.colour === colour && stock.quantity !== 0 ) {
+      } else if (stock.colour === clickedColour && stock.quantity !== 0 ) {
         document.getElementById(stock.size).classList.remove('out-stock');
       }
     })
@@ -110,27 +131,32 @@ const ProductDetails = ({products}) => {
           <div className="full-product-info">
             <h1>{products.title}</h1>
             <div className="product-prices">
-              <p id="productPrice">&pound; --.--</p>
-              <p id="productDiscount"></p>
+              <p id="productPrice">{(currentPrice) ? `£${currentPrice.toFixed(2)}` : '£ --.--'}</p>
+              <p id="productDiscount">{(currentDiscount) ? `-£${currentDiscount.toFixed(2)}` : null}</p>
             </div>
 
             <p>{products.description}</p>
 
             <div className="product-options">
                 <label>Size:</label>
-                {sizeArr.map((size) => (
-                    <button id={size} onClick={() => changeSize(size)}>{size}</button>
+                {sizeArr.map((size, index) => (
+                    <button id={size} onClick={() => changeSize(size)} key={`s${index}`}>{size}</button>
                 ))}
             </div>
             
             <div className="product-options">
                 <label>Colour:</label>
-                {colourArr.map((colour) => (
-                    <button id={colour} onClick={() => changeColour(colour)}>{colour}</button>
+                {colourArr.map((colour, index) => (
+                    <button 
+                      id={colour} 
+                      className={(currentColour === colour) ? 'active-btn' : null} 
+                      key={`c${index}`} 
+                      onClick={() => changeColour(colour)}>
+                    {colour}</button>
                 ))}
             </div>
 
-            <p id="stockWarning"></p>
+            <p id="stockWarning">{(currentQuantity) ? `Only ${currentQuantity} items left!` : null}</p>
 
             <button className="add-btn">Add to Basket</button>
           </div>
