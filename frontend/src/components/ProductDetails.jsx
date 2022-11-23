@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
+import AddToBasket from "./AddToBasket";
 
 const ProductDetails = ({products}) => {
   //***** variables *****/ 
@@ -93,11 +94,6 @@ const ProductDetails = ({products}) => {
     currentColour = clickedColour;
     getStockEntry(currentSize, currentColour);
 
-    //***** changes url to match selected colour *****/
-    // if (clickedColour !== colour) {
-    //   window.location.assign(`/products/${products._id}/${clickedColour}`);
-    // }
-
     //***** adds images based on selected colour *****/
     products.image_collection.map((collect) => {
       if (collect.colour === clickedColour) {
@@ -158,7 +154,7 @@ const ProductDetails = ({products}) => {
 
             <p id="stockWarning">{(currentQuantity) ? `Only ${currentQuantity} items left!` : null}</p>
 
-            <button className="add-btn">Add to Basket</button>
+            <AddToBasket size={currentSize} colour={currentColour} />
           </div>
         </div>
     </div>
