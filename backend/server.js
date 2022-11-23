@@ -5,6 +5,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const productRoutes = require('./routes/products.jsx');
 const categoryRoutes = require('./routes/categories.jsx');
+const basketRoutes = require('./routes/basket.jsx');
 
 // express app
 const app = express();
@@ -13,14 +14,10 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-app.use((req, res, next) => {
-  console.log(req.path, req.method)
-  next()
-});
-
 // routes
 app.use('/products', productRoutes);
 app.use('/category', categoryRoutes);
+app.use('/basket', basketRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
