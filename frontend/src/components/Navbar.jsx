@@ -28,7 +28,7 @@ const Navbar = () => {
           <NavLink to="/account" className={({ isActive }) => (isActive ? 'active' : 'not-active')}>
             <FontAwesomeIcon icon={faUser} className="user-icon" />
           </NavLink>
-          <NavLink to="/cart" className={({ isActive }) => (isActive ? 'active' : 'not-active')}>
+          <NavLink to="/basket/636a8b38b26aa05d1b9a22b8" className={({ isActive }) => (isActive ? 'active' : 'not-active')}>
             <FontAwesomeIcon icon={faCartShopping} className="cart-icon" />
           </NavLink>
         </div>

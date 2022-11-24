@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Clothing from './pages/Clothing';
 import Accessories from './pages/Accessories';
 import Account from './pages/Account';
-import Cart from './pages/Cart';
+import Cart from './pages/Basket';
 import BurgerMenu from './components/BurgerMenu';
 import Product from './pages/Product';
 
@@ -22,7 +22,7 @@ const App = () => (
           <Route path="/accessories" element={<Accessories />} />
           <Route path="/products/:id/*" element={<Product />} />
           <Route path="/account" element={<Account />} />
-          <Route path="/cart" element={<Cart />} />
+          <Route path="/basket/:id" element={<Cart />} />
         </Routes>
       </div>
     </BrowserRouter>

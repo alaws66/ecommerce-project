@@ -14,12 +14,14 @@
   justify-content: space-between;
   align-items: center;
   margin: 1.5em 0;
-  padding: 1em 2em;
+  padding: 1.5em;
   background-color: $blue-dark;
   border-radius: 15px;
 }
 
 .product-image {
+  display: flex;
+
   img {
     width: 14em;
   }

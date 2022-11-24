@@ -12,7 +12,7 @@ router.get('/:id', async (req, res) => {
     return res.status(404).json({error: 'No such basket'});
   }
 
-  const basket = await basketModel.find({user_id: id});
+  const basket = await basketModel.findOne({user_id: id});
 
   if (!basket) {
     return res.status(404).json({error: 'No such basket'})
