@@ -1,23 +1,16 @@
-import { useParams } from "react-router-dom";
 import React, { useEffect, useState } from 'react';
 import AddToBasket from "./AddToBasket";
 
-const ProductDetails = ({products}) => {
-  //***** variables *****/ 
+const ProductDetails = ({products, colour}) => {
+
   let sizeArr = [];
   let colourArr = [];
 
-  let currentSize = null;
-  let currentColour = null;
-  // let currentStockItem = null; 
   let [currentPrice, setPrice] = useState(null);
   let [currentDiscount, setDiscount] = useState(null);
   let [currentQuantity, setQuantity] = useState(null);
-
-  const { colour } = useParams();
-  if (colour) {
-    currentColour = colour;
-  }
+  let [currentColour, setCurrentColour] = useState(colour);
+  let [currentSize, setCurrentSize] = useState(null);
 
   useEffect(() => {
     //***** update the document title using the browser API *****//
@@ -39,10 +32,15 @@ const ProductDetails = ({products}) => {
   function getStockEntry(size, colour) {
     let selectedStockItem = null;
 
+    // console.log(`params size: ${size}`);
+    // console.log(`params colour: ${colour}`);
+    // console.log(`currentSize: ${currentSize}`);
+    // console.log(`currentColour: ${currentColour}`);
+
     //***** find the selected entry of the first matching colour if the size is null *****//
     for (const stock of products.stock) {
       if (!size && stock.colour === colour) {
-        currentSize = stock.size;
+        setCurrentSize(stock.size);
         selectedStockItem = stock;
         break;
       }
@@ -55,7 +53,7 @@ const ProductDetails = ({products}) => {
     //***** work out the price, discount and quantity *****//
     if (selectedStockItem.discount) {
       setPrice(selectedStockItem.price);
-      setDiscount((selectedStockItem.discount / 100) * selectedStockItem.price);
+      setDiscount(selectedStockItem.discount);
     } else {
       setPrice(selectedStockItem.price);
       setDiscount(null);
@@ -70,7 +68,7 @@ const ProductDetails = ({products}) => {
 
   //***** function to select size of product from stock *****/
   function changeSize(clickedSize) {
-    currentSize = clickedSize;
+    setCurrentSize(clickedSize);
 
     getStockEntry(currentSize, currentColour);
 
@@ -91,7 +89,8 @@ const ProductDetails = ({products}) => {
 
   //***** function to select colour of product from stock *****/
   function changeColour(clickedColour) {
-    currentColour = clickedColour;
+    setCurrentColour(clickedColour);
+
     getStockEntry(currentSize, currentColour);
 
     //***** adds images based on selected colour *****/
@@ -128,7 +127,7 @@ const ProductDetails = ({products}) => {
             <h1>{products.title}</h1>
             <div className="product-prices">
               <p id="productPrice">{(currentPrice) ? `£${currentPrice.toFixed(2)}` : '£ --.--'}</p>
-              <p id="productDiscount">{(currentDiscount) ? `-£${currentDiscount.toFixed(2)}` : null}</p>
+              <p id="productDiscount">{(currentDiscount) ? `-£${((currentDiscount / 100) * currentPrice).toFixed(2)}` : null}</p>
             </div>
 
             <p>{products.description}</p>
@@ -154,7 +153,7 @@ const ProductDetails = ({products}) => {
 
             <p id="stockWarning">{(currentQuantity) ? `Only ${currentQuantity} items left!` : null}</p>
 
-            <AddToBasket size={currentSize} colour={currentColour} />
+            <AddToBasket size={currentSize} colour={currentColour} id={products._id} price={currentPrice} discount={currentDiscount} />
           </div>
         </div>
     </div>

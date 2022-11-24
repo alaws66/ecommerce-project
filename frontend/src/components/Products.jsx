@@ -14,7 +14,7 @@ const Products = ({products}) => {
         <div className="products">
           {products.map(({ _id, title, colour, min_price, max_price, discount, image }, index) => (
             <div className="product" key={ index }>
-              <Link to={`/products/${ _id }/${ colour }`}>
+              <Link to={`/products/${ _id }`} state={{ colour: colour }}>
                 <div className="product-img">
                   <img src={image} alt={ title }></img>
                   {discount && ( 
