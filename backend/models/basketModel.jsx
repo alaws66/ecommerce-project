@@ -5,7 +5,10 @@ const Schema = mongoose.Schema;
 const basketSchema = new Schema({
   products: [{
     _id: false,
-    product_id: mongoose.ObjectId,
+    product_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Products'
+    },
     size: mongoose.Mixed,
     colour: String,
     price: Number,

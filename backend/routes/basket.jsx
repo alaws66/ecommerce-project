@@ -12,7 +12,39 @@ router.get('/:id', async (req, res) => {
     return res.status(404).json({error: 'No such basket'});
   }
 
-  const basket = await basketModel.findOne({user_id: id});
+  const basket = await basketModel.aggregate([
+    { $match: { user_id : new mongoose.Types.ObjectId(id) }},
+    { $unwind: "$products" },
+    { 
+      $lookup: {
+        from: "products",
+        localField: "products.product_id",
+        foreignField: "_id",
+        as: "productLookup"
+      }
+    },
+    {
+      $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$productLookup", 0 ] }, "$$ROOT" ] } }
+    },
+    { $unwind: "$image_collection" },
+    { 
+      $redact: { 
+        $cond: {
+          if: { $eq: [ "$image_collection.colour", "$products.colour" ] },
+          then: "$$KEEP",
+          else: "$$PRUNE"
+        } 
+      } 
+    },
+    {
+      $replaceRoot: {
+        newRoot: {
+            $mergeObjects: ["$$ROOT", "$products"]
+        }
+      }
+    },
+    { $project: { productLookup: 0, products: 0, stock: 0, sections: 0, category: 0, type: 0 } }
+  ]);
 
   if (!basket) {
     return res.status(404).json({error: 'No such basket'})
