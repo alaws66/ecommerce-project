@@ -11,6 +11,8 @@ const ProductDetails = ({products, colour}) => {
   let [currentQuantity, setQuantity] = useState(null);
   let [currentColour, setCurrentColour] = useState(colour);
   let [currentSize, setCurrentSize] = useState(null);
+  let [currentImage, setCurrentImage] = useState('../../public/product-placeholder.png');
+  let [currentImage2, setCurrentImage2] = useState('../../public/product-placeholder.png');
 
   useEffect(() => {
     //***** update the document title using the browser API *****//
@@ -96,14 +98,14 @@ const ProductDetails = ({products, colour}) => {
     //***** adds images based on selected colour *****/
     products.image_collection.map((collect) => {
       if (collect.colour === clickedColour) {
-        document.getElementById('product-img-1').src = collect.images[0];
+        setCurrentImage(collect.images[0]);
         document.getElementById(clickedColour).classList.add('active-btn');
       } else if (collect.colour !== clickedColour) {
         document.getElementById(collect.colour).classList.remove('active-btn');
       }
 
       if (collect.colour === clickedColour && collect.images[1]) {
-        document.getElementById('product-img-2').src = collect.images[1];
+        setCurrentImage2(collect.images[1]);
       } 
     })
 
@@ -120,8 +122,8 @@ const ProductDetails = ({products, colour}) => {
     <div>
         <div className="product-details">
           <div className="preview-images">
-            <img src="../../public/product-placeholder.png" id="product-img-1" alt={products.title}></img>
-            <img src="../../public/product-placeholder.png" id="product-img-2" alt={products.title}></img>
+            <img src={currentImage} id="product-img-1" alt={products.title}></img>
+            <img src={currentImage2} id="product-img-2" alt={products.title}></img>
           </div>
           <div className="full-product-info">
             <h1>{products.title}</h1>

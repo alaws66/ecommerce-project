@@ -17,6 +17,11 @@
   padding: 1.5em;
   background-color: $blue-dark;
   border-radius: 15px;
+  transition: 0.2s linear;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .product-image {
@@ -35,6 +40,7 @@
 
   p {
     padding: 0.2em 0;
+    color: $light;
 
     &:first-child {
       padding-bottom: 1em;

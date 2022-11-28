@@ -5,16 +5,17 @@ const Basket = ({basket}) => {
     <div className='cart-contents'>
       <h1>Basket</h1>
       {basket && 
-        basket.products.map(({ product_id, size, colour, price, quantity, discount }) => (
+        basket.map(({ product_id, title, size, colour, price, quantity, discount, image_collection }) => (
           <BasketProduct 
             key={product_id}
-            // img={img}
-            // title={title}
+            id={product_id}
+            title={title}
             size={size}
             colour={colour}
             price={price}
             discount={discount}
             quantity={quantity}
+            image={image_collection.images[0]}
           />
         ))
       }
