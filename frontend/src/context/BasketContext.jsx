@@ -1,27 +1,26 @@
 import { createContext, useReducer } from "react";
 
-export const BasketsContext = createContext();
+export const BasketContext = createContext();
 
-export const basketsReducer = (state, action) => {
+export const basketReducer = (state, action) => {
   switch (action.type) {
-    case 'ADD_PRODUCT':
-      return true;
-    // return {
-      //   products: [action.payload, ...state.products]
-      // }
+    case "SET_BASKET":
+      return {
+        basket: action.payload
+      }
     default: 
       return state;
   }
 }
 
-export const BasketsContextProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(basketsReducer, {
-    products: null
+export const BasketContextProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(basketReducer, {
+    basket: null
   });
 
   return (
-    <BasketsContext.Provider value={{ ...state, dispatch }}>
+    <BasketContext.Provider value={{ ...state, dispatch }}>
       { children }
-    </BasketsContext.Provider>
+    </BasketContext.Provider>
   )
 }

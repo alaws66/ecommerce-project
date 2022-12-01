@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 
 const router = express.Router();
 
-// GET single basket
+// GET a single basket
 router.get('/:id', async (req, res) => {
   const { id } = req.params;
 
@@ -26,16 +26,30 @@ router.get('/:id', async (req, res) => {
     {
       $replaceRoot: { newRoot: { $mergeObjects: [ { $arrayElemAt: [ "$productLookup", 0 ] }, "$$ROOT" ] } }
     },
-    { $unwind: "$image_collection" },
-    { 
-      $redact: { 
-        $cond: {
-          if: { $eq: [ "$image_collection.colour", "$products.colour" ] },
-          then: "$$KEEP",
-          else: "$$PRUNE"
-        } 
-      } 
+    {
+      $addFields: {
+        image_collection: {
+          $filter: {
+            input: '$image_collection',
+            as: 'image',
+            cond: {
+              $eq: [ "$$image.colour", "$products.colour" ]
+            }
+          }
+        }
+      }
     },
+    { $unwind: "$image_collection" },
+    // { 
+    //   $redact: { 
+    //     $cond: {
+    //       if: { $eq: [ "$image_collection.colour", "$products.colour" ] },
+    //       then: "$$KEEP",
+    //       else: "$$PRUNE"
+    //     } 
+    //   } 
+    // },
+    // { $match: { $expr: { $eq: [ "$image_collection.colour", "$products.colour" ] } } },
     {
       $replaceRoot: {
         newRoot: {
@@ -59,12 +73,13 @@ router.patch('/:user_id', async (req, res) => {
   // get user id from posted values
   const { id } = req.params;
 
-  // lookup basket for user_id
-  const basket = await basketModel.findOneAndUpdate(
+  // lookup a basket from user_id
+  const productInBasket = await basketModel.findOneAndUpdate(
     { user_id: id }, 
     { $push: { 
       products: {
         product_id: req.body.id,
+        item_id: req.body.item_id,
         size: req.body.size,
         colour: req.body.colour,
         price: req.body.price,
@@ -77,15 +92,28 @@ router.patch('/:user_id', async (req, res) => {
     }
   );
 
-  // if basket doesn't exist create it for user id
-  if (!basket) {}
+  // if a basket doesn't exist create it for user id
+  if (!productInBasket) {}
 
-  res.status(200).json(basket);
+  res.status(200).json(productInBasket);
 });
 
 
-// delete item from basket
-router.delete('/:user_id/:prod_id', async (req, res) => {
+// delete product from basket
+router.delete('/:user_id/:item_id', async (req, res) => {
+  const { user_id, item_id } = req.params;
+
+  if (!user_id || !item_id) {
+    return res.status(404).json({error: 'No such product'});
+  }
+
+  const productInBasket = await basketModel.findOneAndDelete({ item_id: item_id });
+
+  if (!productInBasket) {
+    return res.status(404).json({error: 'No such product'});
+  }
+
+  res.status(200).json(productInBasket);
 });
 
 module.exports = router;

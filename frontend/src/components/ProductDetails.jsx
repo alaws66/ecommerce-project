@@ -155,7 +155,7 @@ const ProductDetails = ({products, colour}) => {
 
             <p id="stockWarning">{(currentQuantity) ? `Only ${currentQuantity} items left!` : null}</p>
 
-            <AddToBasket size={currentSize} colour={currentColour} id={products._id} price={currentPrice} discount={currentDiscount} />
+            <AddToBasket size={currentSize} colour={currentColour} id={products._id} price={currentPrice} discount={currentDiscount} item_id={Date.now()} />
           </div>
         </div>
     </div>

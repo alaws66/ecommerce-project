@@ -9,6 +9,7 @@ const basketSchema = new Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Products'
     },
+    item_id: String,
     size: mongoose.Mixed,
     colour: String,
     price: Number,
