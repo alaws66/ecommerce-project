@@ -18,9 +18,15 @@ const Home = () => {
       <div className="homepage-content">
         <div className="display-product">
           <h1>Clothing</h1>
+          <div className="display-img">
+            <img src="../../public/product-images/straight-denim-lightWash-front.jpg"></img>
+          </div>
         </div>
         <div className="display-product">
           <h1>Accessories</h1>
+          <div className="display-img">
+            <img src="../../public/product-images/bucket-hat-green.jpg"></img>
+          </div>
         </div>
       </div>
     </div>

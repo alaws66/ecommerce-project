@@ -70,7 +70,6 @@
 
   .display-product {
     width: 22em;
-    height: 20em;
   }
 
   .display-page-title {
@@ -374,7 +373,6 @@
 
   .display-product {
     width: 15em;
-    height: 15em;
 
     h1 {
       font-size: 1.5em;
@@ -499,7 +497,10 @@
 
   .display-product {
     width: 10em;
-    height: 12em;
+
+    .display-img {
+      padding: 1em 0 0;
+    }
   }
 
   .product-image {
