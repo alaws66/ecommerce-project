@@ -107,7 +107,10 @@ router.delete('/:user_id/:item_id', async (req, res) => {
     return res.status(404).json({error: 'No such product'});
   }
 
-  const productInBasket = await basketModel.findOneAndDelete({ item_id: item_id });
+  const productInBasket = await basketModel.findOneAndUpdate(
+    { user_id: user_id },
+    { $pull: { "products" : { "item_id": item_id } } }
+    );
 
   if (!productInBasket) {
     return res.status(404).json({error: 'No such product'});

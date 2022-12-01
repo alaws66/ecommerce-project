@@ -8,6 +8,10 @@ export const basketReducer = (state, action) => {
       return {
         basket: action.payload
       }
+    case 'DELETE_PRODUCT':
+      return {
+        basket: state.basket.filter((b) => b.item_id !== action.payload.item_id)
+      }
     default: 
       return state;
   }
