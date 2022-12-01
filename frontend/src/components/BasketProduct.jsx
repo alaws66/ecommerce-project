@@ -53,7 +53,7 @@ const BasketProduct = ({ id, item_id, image, title, size, colour, price, discoun
         <p>Colour: {colour}</p>
         <p>Price: £{price}</p>
         {addDiscount()}
-        <div className="adjust-quanity">
+        <div className="adjust-quantity">
           <button><FontAwesomeIcon icon={faPlus} onClick={() => setCounter(count => count + 1)} /></button>
           <p>{counter}</p>
           <button><FontAwesomeIcon icon={faMinus} onClick={decrease} /></button>

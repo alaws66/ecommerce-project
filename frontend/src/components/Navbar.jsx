@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faCartShopping, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
-const Navbar = () => {
+const Navbar = props => {
   return ( 
     <div className="navbar">
       <div className="left-links">
@@ -28,9 +28,9 @@ const Navbar = () => {
           <NavLink to="/account" className={({ isActive }) => (isActive ? 'active' : 'not-active')}>
             <FontAwesomeIcon icon={faUser} className="user-icon" />
           </NavLink>
-          <NavLink to="/basket/636a8b38b26aa05d1b9a22b8" className={({ isActive }) => (isActive ? 'active' : 'not-active')}>
-            <FontAwesomeIcon icon={faCartShopping} className="cart-icon" />
-          </NavLink>
+          <a>
+            <FontAwesomeIcon icon={faCartShopping} className="cart-icon" onClick={props.drawerToggle} />
+          </a>
         </div>
       </div>
     </div>
