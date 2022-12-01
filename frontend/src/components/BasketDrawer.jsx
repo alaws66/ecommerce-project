@@ -1,12 +1,26 @@
 import BasketProduct from "./BasketProduct";
 import { useBasketContext } from "../hooks/useBasketContext";
 import { NavLink } from "react-router-dom";
-import { useState } from "react";
+// import { useState } from "react";
+import { useEffect } from "react";
 
 const Drawer = props => {
   // let [drawerClasses, setDrawerClasses] = useState('drawer');
   let drawerClasses = 'drawer';
-  const { basket } = useBasketContext();
+  const { basket, dispatch } = useBasketContext();
+
+  useEffect(() => {
+    const fetchBasket = async () => {
+      const response = await fetch('http://localhost:5000/basket/636a8b38b26aa05d1b9a22b8');
+      const json = await response.json();
+
+      if (response.ok) {
+        dispatch({type: 'SET_BASKET', payload: json})
+      }
+    }
+
+    fetchBasket();
+  }, [dispatch]);
 
   if (props.show) {
     drawerClasses = 'drawer open-drawer';
