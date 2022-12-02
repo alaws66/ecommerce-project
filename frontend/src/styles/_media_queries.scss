@@ -1,9 +1,3 @@
-@media (max-width: 2000px) {
-  .product-page {
-    padding: 5em 15em;
-  }
-}
-
 @media (max-width: 1800px) {
   .basket {
     padding: 2em 20em;
@@ -20,6 +14,9 @@
   }
 
   .full-product-info {
+    padding-left: 0;
+    width: auto;
+      
     button {
       float: right;
     }
@@ -117,6 +114,8 @@
   }
 
   .preview-images {
+    width: 25em;
+
     img {
       width: 25em;
     }
@@ -172,6 +171,7 @@
 
   .preview-images {
     padding-bottom: 1em;
+    width: 20em;
 
     img {
       width: 20em;
@@ -439,6 +439,8 @@
   }
 
   .preview-images {
+    width: 12em;
+    
     img {
       width: 12em;
     }

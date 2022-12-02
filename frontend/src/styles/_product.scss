@@ -1,5 +1,5 @@
 .product-page {
-  padding: 5em 20em;
+  padding: 5em 15em;
 }
 
 .add-btn {
@@ -13,6 +13,7 @@
 
 .product-details {
   display: flex;
+  justify-content: space-evenly;
   color: $light;
 
   h1 {
@@ -31,11 +32,27 @@
 }
 
 .preview-images {
-  padding-right: 3em;
+  display: flex;
+  flex-wrap: nowrap;
+  width: 35em;
+  overflow: hidden;
+
   img {
     padding-bottom: 0.8em;
-    width: 35em
+    width: 35em;
   }
+}
+
+.preview-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.full-product-info {
+  padding-left: 3em;
+  width: 60em;
 }
 
 .product-options {

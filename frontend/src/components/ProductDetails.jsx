@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import AddToBasket from "./AddToBasket";
+import Carousel from './Carousel';
 
 const ProductDetails = ({products, colour}) => {
 
@@ -121,10 +122,7 @@ const ProductDetails = ({products, colour}) => {
   return ( 
     <div>
         <div className="product-details">
-          <div className="preview-images">
-            <img src={currentImage} id="product-img-1" alt={products.title}></img>
-            <img src={currentImage2} id="product-img-2" alt={products.title}></img>
-          </div>
+          <Carousel img1={currentImage} img2={currentImage2} title={products.title} />
           <div className="full-product-info">
             <h1>{products.title}</h1>
             <div className="product-prices">
