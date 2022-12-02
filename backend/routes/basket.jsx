@@ -4,15 +4,8 @@ const mongoose = require('mongoose');
 
 const router = express.Router();
 
-// GET a single basket
-router.get('/:id', async (req, res) => {
-  const { id } = req.params;
-
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({error: 'No such basket'});
-  }
-
-  const basket = await basketModel.aggregate([
+const getBasket = (id) => {
+  return basketModel.aggregate([
     { $match: { user_id : new mongoose.Types.ObjectId(id) }},
     { $unwind: "$products" },
     { 
@@ -40,16 +33,6 @@ router.get('/:id', async (req, res) => {
       }
     },
     { $unwind: "$image_collection" },
-    // { 
-    //   $redact: { 
-    //     $cond: {
-    //       if: { $eq: [ "$image_collection.colour", "$products.colour" ] },
-    //       then: "$$KEEP",
-    //       else: "$$PRUNE"
-    //     } 
-    //   } 
-    // },
-    // { $match: { $expr: { $eq: [ "$image_collection.colour", "$products.colour" ] } } },
     {
       $replaceRoot: {
         newRoot: {
@@ -59,6 +42,17 @@ router.get('/:id', async (req, res) => {
     },
     { $project: { productLookup: 0, products: 0, stock: 0, sections: 0, category: 0, type: 0 } }
   ]);
+}
+
+// GET a single basket
+router.get('/:id', async (req, res) => {
+  const { id } = req.params;
+
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({error: 'No such basket'});
+  }
+
+  const basket = await getBasket(id);
 
   if (!basket) {
     return res.status(404).json({error: 'No such basket'})
@@ -84,7 +78,7 @@ router.patch('/:user_id', async (req, res) => {
         colour: req.body.colour,
         price: req.body.price,
         discount: req.body.discount,
-        quantity: 1.0
+        quantity: req.body.quantity
       }
     }},
     {
@@ -118,5 +112,31 @@ router.delete('/:user_id/:item_id', async (req, res) => {
 
   res.status(200).json(productInBasket);
 });
+
+// update product quantity in basket
+router.patch('/:user_id/:item_id', async (req, res) => {
+  const { user_id, item_id } = req.params;
+  const { number } = req.query;
+
+  if (!user_id || !item_id) {
+    return res.status(404).json({error: 'No such product'});
+  }
+
+  await basketModel.updateOne(
+    {
+      user_id: user_id,
+      "products.item_id": item_id
+    },
+    {
+      $inc: {
+        "products.$.quantity": number
+      }
+    }
+  );
+
+  const updatedBasket = await getBasket(user_id);
+
+  res.status(200).json(updatedBasket);
+})
 
 module.exports = router;

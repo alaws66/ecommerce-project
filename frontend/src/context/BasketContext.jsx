@@ -12,6 +12,10 @@ export const basketReducer = (state, action) => {
       return {
         basket: state.basket.filter((b) => b.item_id !== action.payload.item_id)
       }
+    case 'UPDATE_BASKET':
+      return {
+        basket: action.payload
+      }
     default: 
       return state;
   }

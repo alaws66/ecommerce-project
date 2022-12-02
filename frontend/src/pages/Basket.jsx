@@ -3,10 +3,12 @@ import BasketProduct from "../components/BasketProduct";
 import { useParams } from "react-router-dom";
 import { useBasketContext } from "../hooks/useBasketContext";
 import { useEffect } from "react";
+import { useState } from "react";
 
 const Basket = () => {
   const { id } = useParams();
   const { basket, dispatch } = useBasketContext();
+  let [ showTotal ] = useState();
 
   useEffect(() => {
     // const {data, isPending, error} = useFetch(`http://localhost:5000/basket/${id}`);
@@ -27,10 +29,12 @@ const Basket = () => {
   basket &&
   basket.map(( product ) => {
     if (product.discount) {
-      totalPrice.push(product.price - (((product.discount / 100) * product.price).toFixed(2)));
+      totalPrice.push(((product.price - ((product.discount / 100) * product.price)) * product.quantity));
     } else {
-      totalPrice.push(product.price);
+      totalPrice.push(product.price * product.quantity);
     }
+
+    showTotal = totalPrice.reduce((a, b) => a + b, 0).toFixed(2);
   });
 
   return ( 
@@ -55,7 +59,7 @@ const Basket = () => {
           />
         ))
       }
-      <p className="total-price">Total: &pound;{(totalPrice.reduce((a, b) => a + b, 0)).toFixed(2)}</p>
+      <p className="total-price">Total: &pound;{showTotal}</p>
 
       <div className="confirm-purchase">
         <button className="purchase-btn">Buy now</button>

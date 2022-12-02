@@ -1,10 +1,10 @@
 import { useBasketContext } from "../hooks/useBasketContext";
 
-const AddToBasket = ({ size, colour, id, price, discount, item_id }) => {
+const AddToBasket = ({ size, colour, id, price, discount, item_id, quantity }) => {
   const { dispatch } = useBasketContext();
 
   const addProduct = async () => {
-    const product = { size, colour, id, price, discount, item_id };
+    const product = { size, colour, id, price, discount, item_id, quantity };
     console.log(product);
 
     const response = await fetch(`http://localhost:5000/basket/636a8b38b26aa05d1b9a22b8`, {
