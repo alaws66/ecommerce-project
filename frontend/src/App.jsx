@@ -41,7 +41,7 @@ class App extends Component {
         <BrowserRouter>
           <Navbar drawerToggle={this.drawerToggle} />
           <BurgerMenu pageWrapId={'page-wrap'} outerContainerId={'outer-container'} />
-          <Drawer show={this.state.sideDrawerOpen} />
+          <Drawer show={this.state.sideDrawerOpen} backdrop={this.backdropClickHandler} />
           {backdrop}
           <div className="pages">
             <Routes>
