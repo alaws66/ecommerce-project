@@ -3,16 +3,10 @@ import { useState, useEffect } from "react";
 const Carousel = ({img1, img2, title}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const imageScroll = () => {
-    if (currentIndex === 1) {
-      return setCurrentIndex(0);
-    }
-
-    return setCurrentIndex(currentIndex + 1)
-  }
+  const imageScroll = () => setCurrentIndex(currentIndex === 1 ? 0 : currentIndex + 1);
 
   useEffect(() => {
-    const interval = setInterval(() => { imageScroll() }, 5000);
+    const interval = setInterval(() => imageScroll() , 5000);
 
     return () => clearInterval(interval);
   })

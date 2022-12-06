@@ -1,11 +1,9 @@
 import BasketProduct from "./BasketProduct";
 import { useBasketContext } from "../hooks/useBasketContext";
 import { NavLink } from "react-router-dom";
-// import { useState } from "react";
 import { useEffect } from "react";
 
 const Drawer = props => {
-  // let [drawerClasses, setDrawerClasses] = useState('drawer');
   let drawerClasses = 'drawer';
   const { basket, dispatch } = useBasketContext();
 

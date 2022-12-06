@@ -65,11 +65,11 @@ router.get('/:id', async (req, res) => {
 // Update a basket
 router.patch('/:user_id', async (req, res) => {
   // get user id from posted values
-  const { id } = req.params;
+  const { user_id } = req.params;
 
   // lookup a basket from user_id
   const productInBasket = await basketModel.findOneAndUpdate(
-    { user_id: id }, 
+    { user_id: user_id }, 
     { $push: { 
       products: {
         product_id: req.body.id,
@@ -80,16 +80,15 @@ router.patch('/:user_id', async (req, res) => {
         discount: req.body.discount,
         quantity: req.body.quantity
       }
-    }},
-    {
-      new: true
-    }
+    }}
   );
 
   // if a basket doesn't exist create it for user id
   if (!productInBasket) {}
 
-  res.status(200).json(productInBasket);
+  const updatedBasket = await getBasket(user_id);
+
+  res.status(200).json(updatedBasket);
 });
 
 
@@ -103,8 +102,11 @@ router.delete('/:user_id/:item_id', async (req, res) => {
 
   const productInBasket = await basketModel.findOneAndUpdate(
     { user_id: user_id },
-    { $pull: { "products" : { "item_id": item_id } } }
-    );
+    { $pull: { "products" : { "item_id": item_id } } },
+    {
+      new: true
+    }
+  );
 
   if (!productInBasket) {
     return res.status(404).json({error: 'No such product'});
