@@ -130,7 +130,7 @@ router.patch('/:user_id/:item_id', async (req, res) => {
       "products.item_id": item_id
     },
     {
-      $inc: {
+      $set: {
         "products.$.quantity": number
       }
     }
