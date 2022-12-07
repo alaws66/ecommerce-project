@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const { Schema, Mixed } = mongoose;
 
-const basketSchema = new Schema({
+const orderSchema = new Schema({
   user_id: Schema.Types.ObjectId,
   products: [{
     _id: false,
@@ -19,4 +19,4 @@ const basketSchema = new Schema({
   }]
 });
 
-module.exports = mongoose.model('Baskets', basketSchema);
+module.exports = mongoose.model('Orders', orderSchema);

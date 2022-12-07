@@ -12,6 +12,7 @@ import BurgerMenu from './components/BurgerMenu';
 import Product from './pages/Product';
 import Drawer from './components/BasketDrawer';
 import Backdrop from './components/Backdrop';
+import CheckedOut from './pages/CheckedOut';
 
 
 class App extends Component {
@@ -51,6 +52,7 @@ class App extends Component {
               <Route path="/products/:id/*" element={<Product />} />
               <Route path="/account" element={<Account />} />
               <Route path="/basket/:id" element={<Basket />} />
+              <Route path='/checked-out' element={<CheckedOut />} />
             </Routes>
           </div>
         </BrowserRouter>

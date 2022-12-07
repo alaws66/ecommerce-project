@@ -6,6 +6,9 @@ const mongoose = require('mongoose');
 const productRoutes = require('./routes/products.jsx');
 const categoryRoutes = require('./routes/categories.jsx');
 const basketRoutes = require('./routes/basket.jsx');
+const orderRoutes = require('./routes/orders.jsx')
+
+mongoose.set('strictQuery', false);
 
 // express app
 const app = express();
@@ -18,6 +21,7 @@ app.use(cors());
 app.use('/products', productRoutes);
 app.use('/category', categoryRoutes);
 app.use('/basket', basketRoutes);
+app.use('/orders', orderRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {

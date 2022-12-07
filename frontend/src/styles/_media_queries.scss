@@ -130,6 +130,18 @@
   .basket {
     padding: 2em 2em;
   }
+
+  .checked-out {
+    margin-top: 8em;
+  
+    h1 {
+      font-size: 2.5em;
+    }
+  
+    button {
+      font-size: 1.5em;
+    }
+  }
 }
 
 @media (max-width: 850px) {
@@ -282,6 +294,20 @@
 
   .product-page {
     padding: 3em 6em;
+  }
+
+  .checked-out {
+    margin-top: 6em;
+    padding: 0 2em;
+  
+    h1 {
+      font-size: 2em;
+      text-align: center;
+    }
+  
+    button {
+      font-size: 1em;
+    }
   }
 }
 

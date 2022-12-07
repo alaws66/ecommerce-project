@@ -1,14 +1,14 @@
 import BasketProduct from "../components/BasketProduct";
 // import useFetch from "../components/useFetch";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useBasketContext } from "../hooks/useBasketContext";
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Basket = () => {
   const { id } = useParams();
   const { basket, dispatch } = useBasketContext();
   let [ showTotal ] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     // const {data, isPending, error} = useFetch(`http://localhost:5000/basket/${id}`);
@@ -37,6 +37,18 @@ const Basket = () => {
     showTotal = totalPrice.reduce((a, b) => a + b, 0).toFixed(2);
   });
 
+  const buyBasket = async () => {
+    const response = await fetch('http://localhost:5000/orders/checkout/636a8b38b26aa05d1b9a22b8', {
+      method: 'POST'
+    });
+
+    if (response.ok) {
+      dispatch({type: 'CHECKOUT', payload: { id }});
+    }
+
+    navigate('/checked-out');
+  };
+
   return ( 
     <div className="basket">
       {/* {error && <h1>{error}</h1>}
@@ -62,7 +74,7 @@ const Basket = () => {
       <p className="total-price">Total: &pound;{showTotal}</p>
 
       <div className="confirm-purchase">
-        <button className="purchase-btn">Buy now</button>
+        <button className="purchase-btn" onClick={buyBasket}>Buy now</button>
       </div>
     </div>
    );
