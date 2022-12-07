@@ -139,6 +139,6 @@ router.patch('/:user_id/:item_id', async (req, res) => {
   const updatedBasket = await getBasket(user_id);
 
   res.status(200).json(updatedBasket);
-})
+});
 
 module.exports = router;

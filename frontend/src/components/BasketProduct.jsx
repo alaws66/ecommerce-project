@@ -47,8 +47,6 @@ const BasketProduct = ({ id, item_id, image, title, size, colour, price, discoun
       method: 'DELETE'
     });
 
-    const json = await response.json();
-
     if (response.ok) {
       dispatch({type: 'DELETE_PRODUCT', payload: { item_id }});
     }
