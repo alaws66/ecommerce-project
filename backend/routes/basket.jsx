@@ -66,11 +66,64 @@ router.get('/:id', async (req, res) => {
 router.patch('/:user_id', async (req, res) => {
   // get user id from posted values
   const { user_id } = req.params;
+  let productInBasket;
 
-  // lookup a basket from user_id
-  const productInBasket = await basketModel.findOneAndUpdate(
-    { user_id: user_id }, 
-    { $push: { 
+  const productExists = await basketModel.aggregate([
+    {
+      $match: {
+        products: {
+          $elemMatch: {
+            product_id: mongoose.Types.ObjectId(req.body.id),
+            size: req.body.size,
+            colour: req.body.colour
+          }
+        }
+      }
+    }
+  ]);
+
+  if (!productExists.length) {
+    // lookup a basket from user_id
+    productInBasket = await basketModel.findOneAndUpdate(
+      { user_id: user_id }, 
+      { 
+        $push: { 
+          products: {
+            product_id: req.body.id,
+            item_id: req.body.item_id,
+            size: req.body.size,
+            colour: req.body.colour,
+            price: req.body.price,
+            discount: req.body.discount,
+            quantity: req.body.quantity
+          }
+        }
+      }
+    );
+  } else {
+    productInBasket = await basketModel.updateOne(
+      {
+        user_id: user_id,
+        products: {
+          $elemMatch: {
+            size: req.body.size,
+            colour: req.body.colour,
+            product_id: req.body.id
+          }
+        }
+      },
+      {
+        $inc: {
+          'products.$.quantity': 1
+        }
+      }
+    );
+  }
+
+  // if a basket doesn't exist create it for user id
+  if (!productInBasket) {
+    await basketModel.insertOne({
+      user_id: user_id,
       products: {
         product_id: req.body.id,
         item_id: req.body.item_id,
@@ -80,11 +133,8 @@ router.patch('/:user_id', async (req, res) => {
         discount: req.body.discount,
         quantity: req.body.quantity
       }
-    }}
-  );
-
-  // if a basket doesn't exist create it for user id
-  if (!productInBasket) {}
+    });
+  }
 
   const updatedBasket = await getBasket(user_id);
 
