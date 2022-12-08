@@ -1,11 +1,12 @@
 import BasketProduct from "./BasketProduct";
 import { useBasketContext } from "../hooks/useBasketContext";
 import { NavLink } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const Drawer = props => {
   let drawerClasses = 'drawer';
   const { basket, dispatch } = useBasketContext();
+  let [ noBasket ] = useState(true);
 
   useEffect(() => {
     const fetchBasket = async () => {
@@ -24,11 +25,17 @@ const Drawer = props => {
     drawerClasses = 'drawer open-drawer';
   }
 
+  basket &&
+  basket.map(() => {
+    noBasket = false;
+  });
+
   return ( 
       <div className={drawerClasses}>
         <h1>Basket</h1>
 
         <div className="basket-preview">
+          {noBasket ? <p className="empty-basket">Nothing in your basket!</p> : null}
           {basket && 
             basket.map(({ product_id, item_id, title, size, colour, price, quantity, discount, image_collection }) => (
               <BasketProduct 

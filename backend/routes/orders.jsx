@@ -25,7 +25,7 @@ router.post('/checkout/:user_id', async (req, res) => {
     { $merge: { into: "orders"}, }
   ]);
 
-  const foo = await basketModel.updateOne(
+  await basketModel.updateOne(
     {user_id: user_id},
     {
       $set: {
@@ -38,7 +38,7 @@ router.post('/checkout/:user_id', async (req, res) => {
     return res.status(404).json({error: 'No such order'});
   }
 
-  res.status(200).json(foo);
+  res.status(200).json(checkout);
 });
 
 module.exports = router;
