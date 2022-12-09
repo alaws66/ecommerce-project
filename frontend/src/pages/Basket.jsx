@@ -41,8 +41,12 @@ const Basket = () => {
   });
 
   const buyBasket = async () => {
-    const response = await fetch('http://localhost:5000/orders/checkout/636a8b38b26aa05d1b9a22b8', {
-      method: 'POST'
+    const response = await fetch(`http://localhost:5000/orders/checkout/636a8b38b26aa05d1b9a22b8/${basket[0]._id}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(basket)
     });
 
     if (response.ok) {
