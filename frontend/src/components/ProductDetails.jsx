@@ -7,19 +7,19 @@ const ProductDetails = ({products, colour}) => {
   let sizeArr = [];
   let colourArr = [];
 
-  let [currentPrice, setPrice] = useState(null);
-  let [currentDiscount, setDiscount] = useState(null);
-  let [currentQuantity, setQuantity] = useState(null);
-  let [currentColour, setCurrentColour] = useState(colour);
-  let [currentSize, setCurrentSize] = useState(null);
-  let [currentImage, setCurrentImage] = useState('../../public/product-placeholder.png');
-  let [currentImage2, setCurrentImage2] = useState('../../public/product-placeholder.png');
+  const [currentPrice, setPrice] = useState(null);
+  const [currentDiscount, setDiscount] = useState(null);
+  const [currentQuantity, setQuantity] = useState(null);
+  const [currentColour, setCurrentColour] = useState(colour);
+  const [currentSize, setCurrentSize] = useState(null);
+  const [currentImage, setCurrentImage] = useState('../../public/product-placeholder.png');
+  const [currentImage2, setCurrentImage2] = useState('../../public/product-placeholder.png');
 
   useEffect(() => {
     //***** update the document title using the browser API *****//
     changeSize(currentSize);
     changeColour(currentColour);
-  }, []);
+  }, [currentSize, currentColour]);
 
   //***** pushes one of every colour and size in seperate arrays  *****/ 
   products.stock.map((stock) => {
@@ -34,16 +34,12 @@ const ProductDetails = ({products, colour}) => {
 
   function getStockEntry(size, colour) {
     let selectedStockItem = null;
-
-    // console.log(`params size: ${size}`);
-    // console.log(`params colour: ${colour}`);
-    // console.log(`currentSize: ${currentSize}`);
-    // console.log(`currentColour: ${currentColour}`);
-
+    
     //***** find the selected entry of the first matching colour if the size is null *****//
     for (const stock of products.stock) {
       if (!size && stock.colour === colour) {
         setCurrentSize(stock.size);
+        document.getElementById(stock.size).classList.add('active-btn');
         selectedStockItem = stock;
         break;
       }
@@ -53,12 +49,12 @@ const ProductDetails = ({products, colour}) => {
       }
     }
 
+    setPrice(selectedStockItem.price);
+
     //***** work out the price, discount and quantity *****//
     if (selectedStockItem.discount) {
-      setPrice(selectedStockItem.price);
       setDiscount(selectedStockItem.discount);
     } else {
-      setPrice(selectedStockItem.price);
       setDiscount(null);
     }
 
