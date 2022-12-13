@@ -1,6 +1,17 @@
 import { Link } from "react-router-dom";
+import useFetch from "./useFetch";
 
 const Products = ({products}) => {
+  const {data: popularProducts} = useFetch('http://localhost:5000/products/popular');
+  
+  const isPopular = (productId, colour) => {
+    const find = popularProducts.filter(function(result) {
+      return result.product_id === productId && result.colour === colour;
+    });
+    
+    return find[0];  
+  }
+
   return ( 
     <div className="browse">
       <div className="divider"></div>
@@ -19,9 +30,14 @@ const Products = ({products}) => {
                   <img src={image} alt={ title }></img>
                   {discount && ( 
                     <div className="sale">
-                    <p>Sale</p>
-                  </div>
-                   )}
+                      <p>Sale</p>
+                    </div>
+                  )}
+                  {popularProducts && isPopular(_id, colour) && (
+                    <div className="popular">
+                      <p>Selling fast!</p>
+                    </div>
+                  )}
                 </div>
                 
                 <p>{ title }</p>
@@ -30,7 +46,7 @@ const Products = ({products}) => {
                 {min_price && (
                   <p>£{ min_price.toFixed(2) } - £{ max_price.toFixed(2) }</p>
                 )}
-                { !min_price && (
+                {!min_price && (
                   <p>£{max_price.toFixed(2)}</p>
                 )}
               </Link>

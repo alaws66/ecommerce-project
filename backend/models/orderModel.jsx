@@ -4,6 +4,7 @@ const { Schema, Mixed } = mongoose;
 
 const orderSchema = new Schema({
   user_id: Schema.Types.ObjectId,
+  purchase_date: Date,
   products: [{
     _id: false,
     product_id: {
