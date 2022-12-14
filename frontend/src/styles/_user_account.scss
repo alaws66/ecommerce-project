@@ -1,0 +1,42 @@
+.orders {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:space-around;
+  align-items: center;
+  margin: 3em 2em;
+}
+
+.order {
+  display: flex;
+  align-items: center;
+  margin: 1em;
+  padding: 1em 2em;
+  background-color: $green;
+  border-radius: 8px;
+
+  p {
+    font-size: 1.8em;
+    line-height: 1.4em;
+    color: $dark;
+  }
+
+  .order-view-more {
+    padding-left: 1em;
+    font-size: 2em;
+    color: $blue-dark;
+  }
+}
+
+// ***** Individual orders *****//
+
+.review-order {
+  margin: 5em 30em;
+
+  .selected-product {
+    transition: none;
+
+    &:hover {
+      transform: none;
+    }
+  }
+}

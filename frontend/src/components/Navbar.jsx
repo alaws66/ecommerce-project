@@ -25,7 +25,7 @@ const Navbar = props => {
         </div>
 
         <div className="icon-links">
-          <NavLink to="/account" className={({ isActive }) => (isActive ? 'active' : 'not-active')}>
+          <NavLink to="/account/636a8b38b26aa05d1b9a22b8" className={({ isActive }) => (isActive ? 'active' : 'not-active')}>
             <FontAwesomeIcon icon={faUser} className="user-icon" />
           </NavLink>
           <a>

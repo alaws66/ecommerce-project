@@ -13,6 +13,7 @@ import Product from './pages/Product';
 import Drawer from './components/BasketDrawer';
 import Backdrop from './components/Backdrop';
 import CheckedOut from './pages/CheckedOut';
+import ReviewOrder from './pages/ReviewOrder';
 
 
 class App extends Component {
@@ -46,12 +47,13 @@ class App extends Component {
           {backdrop}
           <div className="pages">
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/clothing" element={<Clothing />} />
-              <Route path="/accessories" element={<Accessories />} />
-              <Route path="/products/:id/*" element={<Product />} />
-              <Route path="/account" element={<Account />} />
-              <Route path="/basket/:id" element={<Basket />} />
+              <Route path='/' element={<Home />} />
+              <Route path='/clothing' element={<Clothing />} />
+              <Route path='/accessories' element={<Accessories />} />
+              <Route path='/products/:id/*' element={<Product />} />
+              <Route path='/account/:id' element={<Account />} />
+              <Route path='/review-order/:id' element={<ReviewOrder />} />
+              <Route path='/basket/:id' element={<Basket />} />
               <Route path='/checked-out' element={<CheckedOut />} />
             </Routes>
           </div>

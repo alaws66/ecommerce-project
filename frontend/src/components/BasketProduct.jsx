@@ -53,7 +53,7 @@ const BasketProduct = ({ id, item_id, image, title, size, colour, price, discoun
   }
 
   return ( 
-    <div className="basket-product">
+    <div className="selected-product">
       <div className="product-image">
         <FontAwesomeIcon icon={faXmark} className="delete-product" onClick={handleDelete} />
         <Link to={`/products/${ id }`} state={{ colour: colour }}>
