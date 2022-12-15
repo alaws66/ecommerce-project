@@ -3,12 +3,44 @@ const productModel = require('../models/productModel.jsx');
 
 const router = express.Router();
 
+router.get('/filter/:cat', async (req, res) => {
+  const { cat } = req.params;
+
+  const filter = await productModel.aggregate([
+    { $unwind: "$sections" },
+    { $match: { category: cat } },
+    { 
+      $group: {
+        _id: "$sections",
+        count: { $sum: 1 },
+        category: { $first: "$category" }
+      } 
+    },
+    { $sort: { count: -1 } }
+  ]);
+
+  if (!filter) {
+    return res.status(404).json({error: 'No such product'})
+  }
+
+  res.status(200).json(filter);
+});
+
 // GET single category
 router.get('/:cat', async (req, res) => {
-  const products = await productModel.aggregate([ 
-    { $unwind: "$stock" },
-    { $unwind: "$image_collection" },
+  const { sections } = req.query;
+  const { cat } = req.params;
 
+  const match = { category: cat };
+
+  if (sections) {
+    match.sections = { $in: sections.split(',') }
+  }
+
+  const products = await productModel.aggregate([
+    { $unwind: "$stock" },
+    { $match: match },
+    { $unwind: "$image_collection" },
     { 
       $redact: { 
         $cond: {
@@ -18,7 +50,6 @@ router.get('/:cat', async (req, res) => {
         } 
       } 
     },
-
     { 
       $group: { 
         _id: {
@@ -33,7 +64,6 @@ router.get('/:cat', async (req, res) => {
         image: { $first: "$image_collection.images" }
       } 
     },
-  
     { 
       $addFields: {
         min_price: {
@@ -43,7 +73,6 @@ router.get('/:cat', async (req, res) => {
         }
       }
     },
-
     { 
       $project: {
         _id: "$_id.product_id", 

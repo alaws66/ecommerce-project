@@ -13,13 +13,51 @@
 
 .product-nav-btns {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   padding: 3em 2em;
 
   button {
     margin: 0 1em;
     padding: 0.5em 1.5em;
     font-size: 1.5em;
+    border-radius: 0;
+  }
+}
+
+.filter-dropdown,
+.sort-dropdown {
+  display: none;
+  position: absolute;
+  margin: 0 1.5em;
+  padding: 1em;
+  z-index: 5;
+  background-color: $light;
+
+  label {
+    font-size: 1.5em;
+  }
+
+  div {
+    padding: 0.3em 0;
+  }
+}
+
+.show {
+  display: flex;
+}
+
+.dropdown-category {
+  margin: 0 1em;
+
+  h3 {
+    margin: 0 0 0.5em;
+    font-size: 1.5em;
+    color: $blue-dark;
+  }
+
+  .divider {
+    padding: 0;
+    height: 0.2em;
   }
 }
 

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import useFetch from "./useFetch";
 
-const Products = ({products}) => {
+const Products = ({products, sections, filterProducts}) => {
   const {data: popularProducts} = useFetch('http://localhost:5000/products/popular');
-  
+
   const isPopular = (productId, colour) => {
     const find = popularProducts.filter(function(result) {
       return result.product_id === productId && result.colour === colour;
@@ -12,14 +12,47 @@ const Products = ({products}) => {
     return find[0];  
   }
 
+  const dropdownToggle = (btn) => {
+    document.querySelector(`.${btn}-dropdown`).classList.toggle("show");
+  }
+
   return ( 
     <div className="browse">
       <div className="divider"></div>
 
       <div className="products-content">
         <div className="product-nav-btns">
-          <button>Sort By</button>
-          <button>Filter</button>
+          <div>
+            <button onClick={() => dropdownToggle('sort')}>Sort By</button>
+            <div className="sort-dropdown">
+              <button>A - Z</button>
+              <button>Z - A</button>
+              <button>Price Low</button>
+              <button>Price High</button>
+            </div>
+          </div>
+          
+
+          <div>
+            <button onClick={() => dropdownToggle('filter')}>Filter</button>
+            <div className="filter-dropdown">
+              <div className="dropdown-category">
+                <h3>Sections</h3>
+                <div className="divider"></div>
+
+                <div className="filters">
+                  {sections &&
+                  sections.map(({_id, count}) => (
+                    <div key={_id}>
+                      <label htmlFor={_id}>{_id} &#40;{count}&#41;</label>
+                      <input type="checkbox" id={_id} onChange={() => filterProducts(_id)}></input>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
         
         <div className="products">
