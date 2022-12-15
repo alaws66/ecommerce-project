@@ -28,7 +28,7 @@ router.get('/filter/:cat', async (req, res) => {
 
 // GET single category
 router.get('/:cat', async (req, res) => {
-  const { sections } = req.query;
+  const { sections, sortBy } = req.query;
   const { cat } = req.params;
 
   const match = { category: cat };
@@ -37,7 +37,11 @@ router.get('/:cat', async (req, res) => {
     match.sections = { $in: sections.split(',') }
   }
 
-  const products = await productModel.aggregate([
+  const discountCalc = {$subtract: [
+    "$max_price", { $divide: [ { $multiply: ["$max_price", "$discount"] }, 100 ] } 
+  ]}; 
+
+  const aggregateQuery = [
     { $unwind: "$stock" },
     { $match: match },
     { $unwind: "$image_collection" },
@@ -67,9 +71,9 @@ router.get('/:cat', async (req, res) => {
     { 
       $addFields: {
         min_price: {
-          $subtract: [
-            "$max_price", { $divide: [ { $multiply: ["$max_price", "$discount"] }, 100 ] } 
-          ] 
+          $cond: [ 
+            discountCalc, discountCalc, "$max_price"
+          ]
         }
       }
     },
@@ -85,8 +89,20 @@ router.get('/:cat', async (req, res) => {
         discount: 1, 
         min_price: 1  
       } 
-    }
-  ]);
+    },
+  ];
+
+  if (sortBy === 'min_price') {
+    aggregateQuery.push({ $sort: { min_price: 1 } });
+  } else if (sortBy === 'max_price') {
+    aggregateQuery.push({ $sort: { max_price: -1 } })
+  } else if (sortBy === 'firstTitle') {
+    aggregateQuery.push({ $sort: { title: 1 } })
+  } else if (sortBy === 'lastTitle') {
+    aggregateQuery.push({ $sort: { title: -1 } })
+  }
+
+  const products = await productModel.aggregate(aggregateQuery);
 
   res.json(products);
 });

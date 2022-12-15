@@ -6,8 +6,9 @@ const filtersArr = [];
 
 const Clothing = () => {
   const [filterString, setFilter] = useState('');
+  const [sortString, setSort] = useState('');
 
-  const {data: products, isPending, error} = useFetch(`http://localhost:5000/category/clothing?sections=${filterString}`);
+  const {data: products, isPending, error} = useFetch(`http://localhost:5000/category/clothing?sections=${filterString}&sortBy=${sortString}`);
   const {data: sections} = useFetch('http://localhost:5000/category/filter/clothing');
 
   const filterProducts = (filter) => {
@@ -19,7 +20,13 @@ const Clothing = () => {
     }
     
     setFilter(filtersArr.toString());
-  }
+  };
+
+  const sortProducts = (sortBy) => {
+    if (sortBy) {
+      setSort(sortBy);
+    }
+  };
 
   return ( 
     <div className="clothing">
@@ -29,7 +36,7 @@ const Clothing = () => {
 
       {error && <h1>{error}</h1>}
       {isPending && <h1>Loading...</h1>}
-      {products && <Products products={products} sections={sections} filterProducts={filterProducts} />}
+      {products && <Products products={products} sections={sections} filterProducts={filterProducts} sortProducts={sortProducts} />}
     </div>
    );
 }

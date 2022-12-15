@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import useFetch from "./useFetch";
 
-const Products = ({products, sections, filterProducts}) => {
+const Products = ({products, sections, filterProducts, sortProducts}) => {
   const {data: popularProducts} = useFetch('http://localhost:5000/products/popular');
 
   const isPopular = (productId, colour) => {
@@ -12,8 +12,9 @@ const Products = ({products, sections, filterProducts}) => {
     return find[0];  
   }
 
-  const dropdownToggle = (btn) => {
-    document.querySelector(`.${btn}-dropdown`).classList.toggle("show");
+  const dropdownToggle = (clicked, notClicked) => {
+    document.querySelector(`.${clicked}-dropdown`).classList.toggle("show");
+    document.querySelector(`.${notClicked}-dropdown`).classList.remove("show");
   }
 
   return ( 
@@ -23,18 +24,17 @@ const Products = ({products, sections, filterProducts}) => {
       <div className="products-content">
         <div className="product-nav-btns">
           <div>
-            <button onClick={() => dropdownToggle('sort')}>Sort By</button>
+            <button onClick={() => dropdownToggle('sort', 'filter')}>Sort By</button>
             <div className="sort-dropdown">
-              <button>A - Z</button>
-              <button>Z - A</button>
-              <button>Price Low</button>
-              <button>Price High</button>
+              <button onClick={() => sortProducts('firstTitle')}>A - Z</button>
+              <button onClick={() => sortProducts('lastTitle')}>Z - A</button>
+              <button onClick={() => sortProducts('min_price')}>Price Low</button>
+              <button onClick={() => sortProducts('max_price')}>Price High</button>
             </div>
-          </div>
-          
+          </div>          
 
           <div>
-            <button onClick={() => dropdownToggle('filter')}>Filter</button>
+            <button onClick={() => dropdownToggle('filter', 'sort')}>Filter</button>
             <div className="filter-dropdown">
               <div className="dropdown-category">
                 <h3>Sections</h3>
@@ -76,10 +76,10 @@ const Products = ({products, sections, filterProducts}) => {
                 <p>{ title }</p>
                 <p>{ colour }</p>
                 
-                {min_price && (
+                {min_price !== max_price && (
                   <p>£{ min_price.toFixed(2) } - £{ max_price.toFixed(2) }</p>
                 )}
-                {!min_price && (
+                {min_price === max_price && (
                   <p>£{max_price.toFixed(2)}</p>
                 )}
               </Link>
