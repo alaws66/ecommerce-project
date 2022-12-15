@@ -42,8 +42,16 @@
   }
 }
 
+.sort-dropdown {
+  button {
+    margin: 0.2em 0;
+    background-color: $green;
+  }
+}
+
 .show {
   display: flex;
+  flex-direction: column;
 }
 
 .dropdown-category {

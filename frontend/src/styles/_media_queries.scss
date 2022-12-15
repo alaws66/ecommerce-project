@@ -303,6 +303,20 @@
       font-size: 1.2em;
     }
   }
+
+  .filter-dropdown,
+  .sort-dropdown {
+    margin: 0 1.2em;
+  }
+
+  .dropdown-category {
+    margin: 0;
+
+    h3,
+    label {
+      font-size: 1.2em;
+    }
+  }
   
   .product {
     p {
@@ -476,6 +490,18 @@
 
   .product-nav-btns {
     button {
+      font-size: 1em;
+    }
+  }
+
+  .filter-dropdown,
+  .sort-dropdown {
+    margin: 0 1em;
+  }
+
+  .dropdown-category {
+    h3,
+    label {
       font-size: 1em;
     }
   }
