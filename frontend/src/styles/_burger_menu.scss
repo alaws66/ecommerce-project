@@ -1,0 +1,75 @@
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 2em;
+  left: 2em;
+  top: 1.5em;
+  color: $dark;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $green;
+  }
+}
+
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
+}
+
+/* General sidebar styles */
+.bm-menu {
+  width: 30em;
+  background: $green;
+  padding: 2.5em 1.5em 0;
+}
+
+/* Individual item */
+.bm-item {
+  width: fit-content;
+  font-size: 2.5em;
+  color: $light;
+  margin-bottom: 0.5em;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.bm-item:hover {
+  color: $blue-dark;
+}
+
+/* Search bar */
+.burger-search {
+  margin-bottom: 2em;
+  padding: 0.5em;
+  height: fit-content;
+  font-size: 1.2em;
+  background-color: #E7EEF0;
+  border-radius: 5px;
+
+  input {
+    font-size: 1.5em;
+    background-color: transparent;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &-icon {
+    font-size: 1.5em;
+    color: $accent-color;
+  }
+}
+
+.bm-item-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}

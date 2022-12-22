@@ -1,0 +1,17 @@
+.checked-out {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10em;
+
+  h1 {
+    padding-bottom: 1em;
+    font-size: 3em;
+    color: $light;
+  }
+
+  button {
+    padding: 0.5em 1em;
+    font-size: 2em;
+  }
+}

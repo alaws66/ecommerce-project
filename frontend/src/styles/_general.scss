@@ -1,10 +1,29 @@
 body {
   margin: 0;
   font-family: 'Archivo', sans-serif;
-  background-color: $blue-light;
+  background-color: $brown;
 }
 
-h1 {
+button {
+  font-family: 'Archivo', sans-serif;
+  color: $light;
+  background-color: $accent-color;
+  border: none;
+  border-radius: 10px;
+  transition: filter 0.5s;
+
+  &:hover {
+    filter: brightness(115%);
+    cursor: pointer;
+  }
+}
+
+.pages {
+  padding-top: 5.5em;
+}
+
+h1,
+p {
   margin: 0;
 }
 

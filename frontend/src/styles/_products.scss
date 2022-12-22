@@ -1,0 +1,121 @@
+.display-page-title {
+  background-color: $blue-light;
+  height: fit-content;
+
+  h1 {
+    padding: 0.4em 0.8em;
+    text-align: end;
+    font-size: 8em;
+    font-weight: 600;
+    color: $green;
+  }
+}
+
+.product-nav-btns {
+  display: flex;
+  align-items: flex-start;
+  padding: 3em 2em;
+
+  button {
+    margin: 0 1em;
+    padding: 0.5em 1.5em;
+    font-size: 1.5em;
+    border-radius: 0;
+  }
+}
+
+.filter-dropdown,
+.sort-dropdown {
+  display: none;
+  position: absolute;
+  margin: 0 1.5em;
+  padding: 1em;
+  z-index: 5;
+  background-color: $light;
+
+  label {
+    font-size: 1.5em;
+  }
+
+  div {
+    padding: 0.3em 0;
+  }
+}
+
+.sort-dropdown {
+  button {
+    margin: 0.2em 0;
+    background-color: $green;
+  }
+}
+
+.show {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-category {
+  margin: 0 1em;
+
+  h3 {
+    margin: 0 0 0.5em;
+    font-size: 1.5em;
+    color: $blue-dark;
+  }
+
+  .divider {
+    padding: 0;
+    height: 0.2em;
+  }
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0 5em;
+}
+
+.product {
+  padding: 0 1em 2em;
+
+  p {
+    font-size: 2em;
+    color: $light;
+  }
+}
+
+.product-img {
+  position: relative;
+  padding-bottom: 1em;
+
+  img {
+    width: 30em;
+    transition: width 0.3s;
+
+    &:hover {
+      width: 32em;
+    }
+  }
+}
+
+.sale,
+.popular {
+  position: absolute;
+  right: 1em;
+  background-color: $light;
+
+  p {
+    padding: 0.2em 0.5em;
+    font-weight: 900;
+    color: $accent-color;
+  }
+}
+
+.sale {
+  top: 1em;
+}
+
+.popular {
+  bottom: 2em;
+}

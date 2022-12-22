@@ -1,0 +1,636 @@
+@media (max-width: 1800px) {
+  .basket {
+    padding: 2em 20em;
+  }
+
+  .product-details {
+    flex-direction: column;
+  }
+
+  .preview-images {
+    align-self: center;
+    padding-right: 0;
+    padding-bottom: 3em;
+  }
+
+  .full-product-info {
+    padding-left: 0;
+    width: auto;
+      
+    button {
+      float: right;
+    }
+  }
+
+  .review-order {
+    margin: 5em 20em;
+  }
+}
+
+@media (max-width: 1350px) {
+  .basket {
+    padding: 2em 8em;
+  }
+
+  .product-page {
+    padding: 5em 10em;
+  }
+
+  .review-order {
+    margin: 5em 10em;
+  }
+}
+
+@media (min-width: 1200px) {
+  .bm-icon {
+    display: none;
+  }
+}
+
+@media (max-width: 1200px) {
+  .left-links a,
+  .search {
+    display: none;
+  }
+
+  .message {
+    width: 36em;
+  }
+
+  .promo-number {
+    h1 {
+      font-size: 4em;
+
+      &:first-child {
+        font-size: 10em;
+      }
+    }
+  }
+
+  .text {
+    h1 {
+      font-size: 2em;
+    }
+  }
+
+  .display-product {
+    width: 22em;
+  }
+
+  .display-page-title {
+    h1 {
+      font-size: 6em;
+    }
+  }
+
+  .product-nav-btns {
+    padding: 2em 1em;
+  }
+
+  .product-img {
+    img {
+      width: 20em;
+
+      &:hover {
+        width: 22em;
+      }
+    }
+  }
+
+  .product {
+    p {
+      font-size: 1.5em;
+    }
+  }
+
+  .add-btn,
+  .product-details h1 {
+    font-size: 2em;
+  }
+
+  .product-details {
+    p,
+    label {
+      font-size: 1.5em;
+    }
+  }
+
+  .product-options {
+    button {
+      font-size: 1.2em;
+    }
+  }
+
+  .preview-images {
+    width: 25em;
+
+    img {
+      width: 25em;
+    }
+  }
+
+  .order {
+    p {
+      font-size: 1.5em;
+    }
+  }
+}
+
+@media (max-width: 950px) {
+  .homepage-content {
+    flex-direction: column;
+  }
+
+  .basket {
+    padding: 2em 2em;
+  }
+
+  .checked-out {
+    margin-top: 8em;
+  
+    h1 {
+      font-size: 2.5em;
+    }
+  
+    button {
+      font-size: 1.5em;
+    }
+  }
+
+  .review-order {
+    margin: 3em 4em;
+  }
+}
+
+@media (max-width: 850px) {
+  .drawer {
+    width: 30em;
+
+    .product-image img {
+      width: 10em;
+    }
+
+    .product-info p {
+      font-size: 0.8em;
+    }
+  }
+
+  .add-btn {
+    margin: 0.5em 0;
+    font-size: 1.2em;
+  }
+
+  .product-details {
+    h1 {
+      font-size: 1.5em;
+    }
+
+    p,
+    label {
+      font-size: 1em;
+    }
+  }
+
+  .product-options {
+    padding-bottom: 0;
+
+    button {
+      font-size: 0.8em;
+    }
+  }
+
+  .preview-images {
+    padding-bottom: 1em;
+    width: 20em;
+
+    img {
+      width: 20em;
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .bm-menu,
+  .drawer {
+    width: 20em
+  }
+
+  .drawer {
+    h1 {
+      font-size: 2.5em;
+    }
+    .product-image img {
+      width: 8em;
+    }
+
+    .basket-link {
+      font-size: 1.5em;
+    }
+  }
+
+  .bm-item {
+    font-size: 2em;
+  }
+
+  .burger-search {
+    font-size: 0.8em;
+
+    input {
+      font-size: 1.3em;
+    }
+  }
+
+  .message {
+    width: 28em;
+  }
+
+  .promo-number {
+    h1 {
+      font-size: 2em;
+
+      &:first-child {
+        font-size: 6em;
+      }
+    }
+  }
+
+  .text {
+    h1 {
+      font-size: 1.5em;
+    }
+  }
+
+  .basket {
+    padding: 2em 1em;
+
+    h1 {
+      &:first-child {
+        font-size: 2em;
+      }
+    }
+  }
+
+  .product-image {
+    img {
+      width: 10em;
+    }
+  }
+
+  .product-info,
+  .delete-product {
+    font-size: 1em;
+  }
+
+  .total-price {
+    font-size: 2em;
+  }
+
+  .purchase-btn {
+    padding: 0.8em 3em;
+    font-size: 1.5em;
+  }
+
+  .display-page-title {
+    h1 {
+      font-size: 5em;
+    }
+  }
+
+  .product-nav-btns {
+    padding: 1.5em 0.5em;
+
+    button {
+      font-size: 1.2em;
+    }
+  }
+
+  .filter-dropdown,
+  .sort-dropdown {
+    margin: 0 1.2em;
+  }
+
+  .dropdown-category {
+    margin: 0;
+
+    h3,
+    label {
+      font-size: 1.2em;
+    }
+  }
+  
+  .product {
+    p {
+      font-size: 1.2em;
+    }
+  }
+
+  .product-page {
+    padding: 3em 6em;
+  }
+
+  .checked-out {
+    margin-top: 6em;
+    padding: 0 2em;
+  
+    h1 {
+      font-size: 2em;
+      text-align: center;
+    }
+  
+    button {
+      font-size: 1em;
+    }
+  }
+
+  .review-order {
+    margin: 3em;
+  }
+
+  .orders {
+    margin: 2em;
+  }
+
+  .order {
+    p {
+      font-size: 1.2em;
+    }
+    
+    .order-view-more {
+      font-size: 1.5em;
+    }
+  } 
+}
+
+@media (max-width: 500px) {
+  .navbar {
+    height: 3em;
+  }
+
+  .bm-burger-button {
+    width: 1.5em;
+    height: 1.5em;
+    top: 1.8em;
+  }
+
+  .bm-menu,
+  .drawer {
+    width: 15em
+  }
+
+  .drawer {
+    h1 {
+      font-size: 1.5em;
+    }
+
+    .selected-product {
+      padding: 0.6em 0.8em;
+    }
+    .product-image img {
+      width: 6em;
+    }
+
+    .product-info p {
+      font-size: 0.6em;
+    }
+
+    .basket-link {
+      font-size: 1em;
+    }
+  }
+
+  .bm-item {
+    font-size: 1.5em;
+  }
+
+  .burger-search {
+    font-size: 0.6em;
+
+    input {
+      font-size: 1.2em;
+    }
+  }
+
+  .logo {
+    h1 {
+      font-size: 2em;
+    }
+  }
+
+  .icon-links {
+    .user-icon,
+    .cart-icon {
+      font-size: 1.5em;
+    }
+  }
+
+  .pages {
+    padding-top: 5em;
+  }
+
+  .message {
+    width: 18em;
+  }
+
+  .promo-number {
+    h1 {
+      font-size: 1.5em;
+
+      &:first-child {
+        font-size: 4em;
+      }
+    }
+  }
+
+  .text {
+    h1 {
+      font-size: 1em;
+    }
+  }
+
+  .display-product {
+    width: 15em;
+
+    h1 {
+      font-size: 1.5em;
+    }
+  }
+
+  .selected-product {
+    padding: 1em;
+  }
+
+  .product-image {
+    img {
+      width: 7em;
+    }
+  }
+
+  .product-info,
+  .delete-product {
+    font-size: 0.8em;
+  }
+
+  .confirm-purchase {
+    padding: 1em 0;
+  }
+
+  .total-price {
+    font-size: 1.5em;
+  }
+
+  .purchase-btn {
+    font-size: 1em;
+  }
+
+  .display-page-title {
+    h1 {
+      font-size: 3em;
+    }
+  }
+
+  .product-nav-btns {
+    button {
+      font-size: 1em;
+    }
+  }
+
+  .filter-dropdown,
+  .sort-dropdown {
+    margin: 0 1em;
+  }
+
+  .dropdown-category {
+    h3,
+    label {
+      font-size: 1em;
+    }
+  }
+
+  .product-img {
+    img {
+      width: 15em;
+
+      &:hover {
+        width: 7em;
+      }
+    }
+  }
+  
+  .product {
+    p {
+      font-size: 1em;
+    }
+  }
+
+  .product-page {
+    padding: 3em 4em;
+  }
+
+  .preview-images {
+    width: 12em;
+    
+    img {
+      width: 12em;
+    }
+  }
+
+  .add-btn {
+    margin: 0.8em 0;
+    font-size: 1em;
+  }
+
+  .product-details {
+    h1 {
+      font-size: 1.2em;
+    }
+
+    p,
+    label {
+      font-size: 0.8em;
+    }
+  }
+
+  .product-options {
+    padding-bottom: 0;
+
+    button {
+      font-size: 0.6em;
+    }
+  }
+
+  .review-order {
+    margin: 2em 1em;
+  }
+
+  .orders {
+    margin: 1em 0;
+  }
+
+  .order {
+    padding: 1em;
+
+    p {
+      font-size: 1em;
+    }
+  }
+}
+
+@media (max-width: 350px) {
+  .bm-menu,
+  .drawer {
+    width: 12em
+  }
+
+  .bm-item {
+    font-size: 1.2em;
+  }
+
+  .burger-search {
+    font-size: 0.5em;
+
+    input {
+      font-size: 1.1em;
+    }
+  }
+
+  .icon-links {
+    a {
+      &:first-child {
+        display: none;
+      }
+    }
+  }
+
+  .display-product {
+    width: 10em;
+
+    .display-img {
+      padding: 1em 0 0;
+    }
+  }
+
+  .product-image {
+    img {
+      width: 5.5em
+    }
+  }
+
+  .product-info,
+  .delete-product {
+    font-size: 0.6em;
+  }
+
+  .product-page {
+    padding: 2em 2em;
+  }
+
+  .review-order {
+    margin: 1em;
+  }
+
+  .order { 
+    p {
+      font-size: 0.8em;
+    }
+  }
+}
